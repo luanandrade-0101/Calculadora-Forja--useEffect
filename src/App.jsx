@@ -1,33 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import styles from'./App.module.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+
+  const [n1, setN1] = useState()
+  const [n2, setN2] = useState()
+  const [respSoma, setRespSoma] = useState()
+  const [respSub, setRespSub] = useState()
+  const [respMult, setRespMult] = useState()
+  const [respDiv, setRespDiv] = useState()
+
+  const [Error, setError] = useState('')
+
+  useEffect(() =>{
+    if(n1 !== undefined && n2 !== undefined && !isNaN(n1) && !isNaN(n2)){
+      setRespSoma(parseFloat(n1) + parseFloat(n2) )
+      setRespSub(parseFloat(n1) - parseFloat(n2) ) 
+      setRespMult(parseFloat(n1) * parseFloat(n2) ) 
+      setRespDiv(parseFloat(n1) / parseFloat(n2) ) 
+
+
+      setError('')
+
+    }else{
+      setError('Digite valores numericos para calcular')
+    }
+    
+  }, [n1, n2])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+     <h1 className={styles.title}>Qualquer coisa</h1>
+     <p>{error}</p>
+     <div className={styles.wrap}>
+      <input type="number" onChange={(e) => setN1(e.Target.value)} value={n1} placeholder='Insira um numero'/>
+      <input type="number" onChange={(e) => setN2(e.target.value)} value={n2} placeholder='Insira outro numero'/>
+     </div>
+
+     <div className={styles.wrapResps}>
+       <h2>Resultado da soma</h2>
+       <h3>{RespSoma}</h3>
+     </div>
+
+     <div className={styles.wrapResps}>
+       <h2>Resultado da substracao</h2>
+       <h3>{respSub}</h3>
+     </div>
+
+     <div className={styles.wrapResps}>
+       <h2>Resultado da multiplicacao</h2>
+       <h3>{respMult}</h3>
+     </div>
+
+     <div className={styles.wrapResps}>
+       <h2>Resultado da divisao</h2>
+       <h3>{respDiv}</h3>
+     </div>
     </>
   )
 }
