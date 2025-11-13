@@ -30,9 +30,9 @@ function App() {
   }, [n1, n2])
 
   return (
-    <>
+    <div className={styles.wrapAll}>
      <h1 className={styles.title}>Qualquer coisa</h1>
-     <p>{error}</p>
+     <p>Digite valores numericos para calcular</p>
      <div className={styles.wrap}>
       <input type="number" onChange={(e) => setN1(e.Target.value)} value={n1} placeholder='Insira um numero'/>
       <input type="number" onChange={(e) => setN2(e.target.value)} value={n2} placeholder='Insira outro numero'/>
@@ -57,7 +57,7 @@ function App() {
        <h2>Resultado da divisao</h2>
        <h3>{respDiv}</h3>
      </div>
-    </>
+    </div>
   )
 }
 
